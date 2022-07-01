@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import Navigation from './components/Navigation';
 import Senior from './pages/Senior';
 import Medior from './pages/Medior';
+import SeniorAnswers from './pages/SeniorAnswers';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Navigation />} />
           <Route exact path="/s" element={<Senior />} />
+          <Route exact path="/sa" element={<SeniorAnswers />} />
           <Route exact path="/m" element={<Medior />} />
         </Routes>
       </Router>
