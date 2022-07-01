@@ -6,7 +6,7 @@ export const SENIOR_CODE = {
         private _receivedMsgs = new BehaviorSubject([]); 
         private _sent = new BehaviorSubject([]); 
        
-        messagesList$ = combineLatest([ 
+        messagesList$ = forkJoin([ 
           this._receivedMsgs.asObservable(), 
           this._sent.asObservable() 
         ]) 
@@ -40,7 +40,6 @@ export const SENIOR_CODE = {
           </div> 
           <input type="text" (change)="pageService.sendMsg($event.target.value)">', 
         styleUrls: ['./single-chat.component.scss'], 
-        changeDetection: ChangeDetectionStrategy.OnPush 
       }) 
       export class SingleChatComponent { 
         constructor(public pageService: InChatService) { 
