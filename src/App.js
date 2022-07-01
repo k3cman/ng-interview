@@ -42,14 +42,15 @@ function App() {
             c-16.1,9.9-26.7,36.1-5.4,59.6c48.5,53.7,113.3,38.8,130.6,32.2C115,186.6,108.8,178.2,88.8,146 M167.2,31.4
             c-3.9,34.9-8,44.5-25.4,78.2c-17.8,34.4-9.6,65.7,10.7,76.3c16.8,8.8,44.7,4.5,54-25.9C227.6,90.9,181.7,42.9,167.2,31.4"></path></svg></div>
       
-      <Router>
+      {/* <Router>
         <Routes>
           <Route exact path="/" element={<Navigation />} />
           <Route exact path="/s" element={<Senior />} />
           <Route exact path="/sa" element={<SeniorAnswers />} />
           <Route exact path="/m" element={<Medior />} />
         </Routes>
-      </Router>
+      </Router> */}
+      <h1> Access Denied </h1>
     </div>
   );
 }
