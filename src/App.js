@@ -6,7 +6,7 @@ import Medior from './pages/Medior';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App pb-10">
       <div className="flex align-center justify-center mt-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1213 278" width="149" height="34">
             <path fill="#343433" d="M1212.5,179.9v-35h-209.8V92.4h-35v87.4L1212.5,179.9L1212.5,179.9z M967.7,74.9h244.8V40
             H967.7V74.9z M771.8,74.9h162.3V40H771.8L771.8,74.9L771.8,74.9z M752.5,40H510v35h104.9v104.9h35V74.9h102.6L752.5,40L752.5,40z
