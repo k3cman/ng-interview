@@ -1,49 +1,60 @@
 export const SENIOR_CODE = {
-    service: `@Injectable({ 
-        providedIn: 'root' 
-      }) 
-      export class InChatService { 
-        private _receivedMsgs = new BehaviorSubject([]); 
-        private _sent = new BehaviorSubject([]); 
-       
-        messagesList$ = forkJoin([ 
-          this._receivedMsgs.asObservable(), 
-          this._sent.asObservable() 
-        ]) 
-       
-        constructor( 
-          private webSocketService: WebsocketService 
-        ) { 
-          this.webSocketService.messages.subscribe(msg => { 
-            this._receivedMsgs.next([...this._receivedMsgs.getValue(), msg]) 
-          }) 
-        } 
-       
-        sendMsg(content: string) { 
-          let message = { 
-            source: '', 
-            content: '' 
-          }; 
-          message.source = 'localhost'; 
-          message.content = content; 
-       
-          this._sent.next([...this._sent.getValue(), message]); 
-          this.webSocketService.messages.next(message); 
-        } 
-      } `,
-      component: `
-      @Component({ 
-        selector: 'app-single-chat', 
-        template: '
-          <div class="chat"> 
-            <div class="message" *ngFor="let msg of pageService.messagesList$ | async"></div> 
-          </div> 
-          <input type="text" (change)="pageService.sendMsg($event.target.value)">', 
-        styleUrls: ['./single-chat.component.scss'], 
-      }) 
-      export class SingleChatComponent { 
-        constructor(public pageService: InChatService) { 
-        } 
-      } 
-      `
+  service: `@Injectable({
+      providedIn: 'root'
+    })
+    export class SChatService {
+        private receivedMessages = new BehaviorSubject<IMessage[]>([]);
+        private sentMessages = new BehaviorSubject<IMessage[]>([]);
+    
+        messagesList$ = forkJoin([
+          this.receivedMessages.asObservable(),
+          this.sentMessages.asObservable()
+        ]);
+    
+      constructor(private webSocketService: WebsocketService, private userService: UserService) {
+          this.webSocketService.messages$.subscribe((data: IMessage[]) => {
+            this.receivedMessages.next(data);
+          });
+        }
+    
+        sendMessage(content: string): void{
+          let message: IMessage = {
+            content: '',
+            userId: ''
+          };
+    
+          message.content = '';
+          message.userId = this.userService.currentUser.id;
+    
+    
+          this.sentMessages.next([...this.sentMessages.getValue(), message]);
+          this.webSocketService.sendMessage(message);
+        }
+    } `,
+  component: `
+      @Component({
+        selector: 'app-s-chat',
+        templateUrl: './s-chat.component.html',
+        styleUrls: ['./s-chat.component.scss']
+      })
+      export class SChatComponent {
+        newMessage: string = '';
+      
+        constructor(
+          public chatService: SChatService
+        ) { }
+      
+      }
+      `,
+  template: `
+      <div class="chat">
+        <div class="messages" *ngFor="let message of chatService.messagesList$ | async">
+          <app-chat-message [message]="message"></app-chat-message>
+        </div>
+        <div class="new-message">
+          <textarea [(ngModel)]="newMessage" />
+          <button (click)="chatService.sendMessage(newMessage)">Send</button>
+        </div>
+      </div>
+`
 }

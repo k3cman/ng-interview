@@ -10,6 +10,8 @@ const Senior = () => {
     <div className="w-3/4 mx-auto">
         <p className="font-mono font-bold text-slate-800 mt-10">Service</p>
         <SyntaxHighlighter className="mt-1" showLineNumbers={true} wrapLines={true} wrapLongLines={true} codeTagPros={{fontSize: "14"}} language="typescript" style={atomOneDark}>{ SENIOR_CODE.service}</SyntaxHighlighter>
+        <p className="font-mono font-bold text-slate-800 mt-10">Template</p>
+        <SyntaxHighlighter className="mt-1" showLineNumbers={true} wrapLines={true} wrapLongLines={true} codeTagPros={{fontSize: "14"}} language="typescript" style={atomOneDark}>{ SENIOR_CODE.template}</SyntaxHighlighter>
         <p className="font-mono font-bold text-slate-800 mt-10">Component</p>
         <SyntaxHighlighter className="mt-1" showLineNumbers={true} wrapLines={true} wrapLongLines={true} codeTagPros={{fontSize: "14"}} language="typescript" style={atomOneDark}>{ SENIOR_CODE.component}</SyntaxHighlighter>
     </div>
