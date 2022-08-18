@@ -17,4 +17,5 @@ const Medior = () => {
   )
 }
 
+
 export default Medior
